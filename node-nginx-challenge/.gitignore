@@ -1,0 +1,4 @@
+node_modules
+db/*
+!db/dump.sql
+package-lock.json
