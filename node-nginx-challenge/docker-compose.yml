@@ -3,14 +3,15 @@ version: '3'
 services:
   app:
     build:
-      context: node
+      context: ./node
+      dockerfile: Dockerfile
     container_name: app
     entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
     command: node index.js
     networks:
       - node-network
-    volumes:
-      - ./node:/usr/src/app
+    # volumes:
+    #   - ./node:/usr/src/app
     tty: true
     depends_on:
       - db
@@ -24,7 +25,6 @@ services:
     tty: true
     volumes:
       - ./db:/var/lib/mysql
-      - ./db/dump.sql:/docker-entrypoint-initdb.d/dump.sql
     environment:
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root

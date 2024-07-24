@@ -8,7 +8,9 @@ RUN apk update --no-cache \
     && wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar xzf - -C /usr/local/bin \
     && apk del wget
 
-COPY . .
+COPY package*.json ./
 RUN npm install
+
+COPY . .
 
 EXPOSE 3000

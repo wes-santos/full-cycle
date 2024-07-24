@@ -11,6 +11,21 @@ const mysql = require('mysql');
 const conn = mysql.createConnection(config);
 conn.connect();
 
+const create_table_query = `
+  CREATE TABLE IF NOT EXISTS people(
+    id int NOT NULL AUTO_INCREMENT,
+    name varchar(255),
+    primary key (id)
+  );
+`;
+
+conn.query(create_table_query);
+
+const insert_name_query = `
+  INSERT INTO people (id, name) VALUES (1, 'Weslley');
+`;
+conn.query(insert_name_query);
+
 app.get('/', (_, res) => {
   const query = `SELECT name FROM people`;
 
