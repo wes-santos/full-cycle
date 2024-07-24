@@ -21,6 +21,8 @@ const create_table_query = `
 
 conn.query(create_table_query);
 
+conn.query(`DELETE FROM people`);
+
 const insert_name_query = `
   INSERT INTO people (id, name) VALUES (1, 'Weslley');
 `;
